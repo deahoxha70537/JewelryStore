@@ -1,0 +1,43 @@
+div{
+    display: flex;  
+    justify-content: center;
+    flex-direction: row;
+    justify-content:flex-end;  
+    width: 80%;
+}
+h3{
+    display: flex;  
+    justify-content: center;
+    flex-direction: row;
+    justify-content:flex-end;  
+    width: 80%;
+    flex-wrap: wrap;
+}
+h4{
+    display: flex;  
+    justify-content: center;
+    flex-direction: row;
+    justify-content:flex-end;  
+    width: 80%;
+    flex-wrap: wrap;
+}
+h5{
+    display: flex;  
+    justify-content: center;
+    flex-direction: row;
+    justify-content:flex-end;  
+    width: 80%;
+    flex-wrap: wrap;
+}
+h6{
+    display: flex;  
+    justify-content: center;
+    flex-direction: row;
+    justify-content:flex-end;  
+    width: 80%;
+    flex-wrap: wrap;
+}
+
+
+    
+    
