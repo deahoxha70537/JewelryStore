@@ -1,26 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="Contact us.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Jewelry</title>
+  <link rel="stylesheet" href="Contact us.css">
 </head>
 <body>
-    <body bgcolor="honeydew">
-    <h1>Contact <br>
-        Us </h1>
-    <p>If u have any questions for us,<br> 
-    please don't hesitate to ask.<br>
-    We're happy to hear feedback and<br>
-    we will help you with anything that we can</p>
-    <div><h2>Send a Message</h2></div>
-    <h3> <input type="text"  placeholder="Name" size="30"
-        maxlength="25"> </h3>
-    <h4> <input type="text"  placeholder="Username" size="30"
-        maxlength="25"> </h4>
-    <h5> <textarea name="comments" cols="30" rows="4" placeholder="Message..."></textarea></h5>
-    <h6> <input type ="submit" name="Contact us" 
-        value="Contact us"> </h6> 
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="#home" class="logo">GLEAM</a>
+      <ul class="navbar-links">
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="About us.html">About</a></li>
+        <li><a href="Product.html">Product</a></li>
+        <li><a href="Contact us.html">Contact us</a></li>
+      </ul>
+    </div>
+  </nav>
+<div class="main-content">
+  <h1>Welcome to Our Jewelry Website</h1>
+  <p>Your destination for beautiful pearls jewelry. Get in touch with us below!</p>
+</div>
+
+  <section class="contact-section">
+    <div class="contact-container">
+      <h2>Contact Us</h2>
+      <p>Have any questions or inquiries? Please fill out the form below, and we'll get back to you shortly.</p>
+      
+      <form id="contactForm" action="https://formspree.io/f/mqkzvwol" method="POST">
+        <div class="form-group">
+          <label for="name">Your Name:</label>
+          <input type="text" id="name" name="name" required placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email:</label>
+          <input type="email" id="email" name="email" required placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label for="phone">Your Phone (optional):</label>
+          <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+        </div>
+        <div class="form-group">
+          <label for="message">Your Message:</label>
+          <textarea id="message" name="message" rows="5" required placeholder="Write your message here..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 GLEAM. All rights reserved.</p>
+  </footer>
 </body>
 </html>
