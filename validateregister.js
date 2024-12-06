@@ -1,41 +1,40 @@
-document.addEventListener("DOMContentLoaded", 
-    function(ngjarja) {
-  
-     const BtnSubmit = document.getElementById('signup');
-     
+document.getElementById("registerForm").addEventListener("submit", function(event) {
+    event.preventDefault();
 
-     const validate = (ngjarja) => { 
-    ngjarja.preventDefault();
-     const username = document.getElementById('username'); 
-    const email = document.getElementById('email'); 
-    const password = document.getElementById('password');
-     const confirmpass = document.getElementById('confirmpass'); 
-    if (username.value === "") {
-     alert("Please enter your Username."); 
-    username.focus();
-     return false;
-     }
-     if (email.value === "") {
-     alert("Please enter your Email."); 
-    email.focus();
-     return false;
-     }
-     if (password.value === "") {
-     alert("Please enter your Password"); 
-     password.focus();
-     return false;
-     }
-     if (!emailValid(confirmpass.value)) {
-        alert("Please confirm your Password."); 
-        confirmpass.focus();
-        return false;
-        }
-        return true; 
-        }
-        const emailValid = (email) => {
-        const emailRegex = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\
-       .])+\.([A-Za-z]{2,4})$/;
-        return emailRegex.test(email.toLowerCase());
-        }
-        BtnSubmit.addEventListener('click', validate);
-        });
+    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (username === "") {
+        alert("Username cannot be empty.");
+        return;
+    }
+    if (!/^[a-zA-Z0-9_]{3,16}$/.test(username)) {
+        alert("Username must be 3-16 characters long and can only contain letters, numbers, and underscores.");
+        return;
+    }
+    if (email === "") {
+        alert("Email cannot be empty.");
+        return;
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+    }
+    if (password === "") {
+        alert("Password cannot be empty.");
+        return;
+    }
+    if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return;
+    }
+    if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+    }
+
+    alert("Registration successful!");
+    window.location.href = "Home.html";
+});
