@@ -43,6 +43,66 @@ header {
     font-size: 1.2rem;
 }
 
+.navbar {
+  background-color: #333;
+  padding: 15px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+}
+.logo img {
+  width: 40px;         
+  height: 40px;        
+  border-radius: 50%;  
+  margin-right: 10px;  
+  background-color: transparent;
+  object-fit: cover; 
+}
+.logo span {
+  font-size: 30px;    
+  font-weight: bold;  
+}
+
+.navbardiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbarlink {
+  list-style: none;
+  display: flex;
+}
+
+.navbarlink li {
+  margin: 0 15px;
+}
+
+.navbarlink a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.navbarlink a:hover {
+  color: #ffcc00;
+}
+
 main {
   padding: 20px;
   max-width: 900px;
