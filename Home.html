@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gleam - Home</title>
   <link rel="stylesheet" href="Home.css">
+  <script src="slider.js"></script>
 </head>
 <body>
 
@@ -93,8 +94,18 @@
 	  that exudes luxury and stands the test of time.</p>
       <a href="Product.html" class="button">Learn More</a>
     </div>
-    <div class="jewelryimg">
-      <img src="jewelryshow.png" alt="Various Pearl Necklaces">
+    <div class="slideshowdiv">
+      <div class="slide">
+        <img src="jewelryshow.png" alt="Pearl Jewelry 1" class="slideimg">
+      </div>
+      <div class="slide">
+        <img src="jewelryshow1.jpg" alt="Pearl Jewelry 2" class="slideimg">
+      </div>
+      <div class="slide">
+        <img src="jewelryshow2.jpg" alt="Pearl Jewelry 3" class="slideimg">
+      </div>
+      <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+      <button class="next" onclick="changeSlide(1)">&#10095;</button>
     </div>
   </div>
   
@@ -129,6 +140,25 @@
       </div>
     </div>
   </div>
+
+  <!-- slider js -->
+ <script>
+  let currentSlideIndex = 0;
+  const slides = document.querySelectorAll('.slide');
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.display = i === index ? 'block' : 'none';
+    });
+  }
+
+  function changeSlide(direction) {
+    currentSlideIndex = (currentSlideIndex + direction + slides.length) % slides.length;
+    showSlide(currentSlideIndex);
+  }
+
+  showSlide(currentSlideIndex);
+ </script> 
   <footer>
     <p>&copy; 2024 Gleam Jewelry Store. All Rights Reserved.</p>
   </footer>
