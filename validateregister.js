@@ -1,40 +1,45 @@
-document.getElementById("registerForm").addEventListener("submit", function(event) {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form');
+    
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
 
-    const username = document.getElementById("username").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
+        const username = document.getElementById('username').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const confirmpass = document.getElementById('confirmpass').value.trim();
 
-    if (username === "") {
-        alert("Username cannot be empty.");
-        return;
-    }
-    if (!/^[a-zA-Z0-9_]{3,16}$/.test(username)) {
-        alert("Username must be 3-16 characters long and can only contain letters, numbers, and underscores.");
-        return;
-    }
-    if (email === "") {
-        alert("Email cannot be empty.");
-        return;
-    }
-    if (!/\S+@\S+\.\S+/.test(email)) {
-        alert("Please enter a valid email address.");
-        return;
-    }
-    if (password === "") {
-        alert("Password cannot be empty.");
-        return;
-    }
-    if (password.length < 6) {
-        alert("Password must be at least 6 characters long.");
-        return;
-    }
-    if (password !== confirmPassword) {
-        alert("Passwords do not match.");
-        return;
-    }
+        let errors = [];
 
-    alert("Registration successful!");
-    window.location.href = "Home.html";
+        if (username === "") {
+            errors.push("Username cannot be empty.");
+        } else if (username.length < 3) {
+            errors.push("Username must be at least 3 characters long.");
+        }
+
+        if (email === "") {
+            errors.push("Email cannot be empty.");
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            errors.push("Invalid email format.");
+        }
+
+        if (password === "") {
+            errors.push("Password cannot be empty.");
+        } else if (password.length < 6) {
+            errors.push("Password must be at least 6 characters long.");
+        }
+
+        if (confirmpass === "") {
+            errors.push("Confirm Password cannot be empty.");
+        } else if (confirmpass !== password) {
+            errors.push("Passwords do not match.");
+        }
+
+        if (errors.length > 0) {
+            alert(errors.join("\n"));
+        } else {
+            alert("Form submitted successfully!");
+            window.location.href = "Home.html"; 
+        }
+    });
 });
