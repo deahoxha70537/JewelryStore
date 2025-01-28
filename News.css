@@ -1,0 +1,127 @@
+/* Përshtatja e faqes dhe elementeve */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar {
+    background-color: #333;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+  }
+  .logo img {
+    width: 40px;         
+    height: 40px;        
+    border-radius: 50%;  
+    margin-right: 10px;  
+    background-color: transparent;
+    object-fit: cover; 
+  }
+  .logo span {
+    font-size: 30px;    
+    font-weight: bold;  
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  .logo {
+    font-size: 1.8rem;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .navbar-links {
+    list-style: none;
+    display: flex;
+  }
+  
+  .navbar-links li {
+    margin: 0 15px;
+  }
+  
+  .navbar-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .navbar-links a:hover {
+    color: #ffcc00;
+  }
+  /* Kontejneri që përmban të gjithë përmbajtjen */
+  .container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 80px 20px;
+  }
+  /* Titulli kryesor */
+  h1 {
+      text-align: center;
+      color:#8B6F70;
+      font-size: 2.5em;
+      margin-bottom: 40px;
+  }
+  
+  /* Lajmi individual */
+  .news-item {
+      background-color: #ffffff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Fotoja e lajmit */
+  .news-item img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+  }
+  
+  /* Titulli i lajmit */
+  .news-item h2 {
+      color: #8B6F70;
+      font-size: 1.8em;
+      margin-bottom: 15px;
+  }
+  
+  /* Përmbajtja e lajmit */
+  .news-item p {
+      color: #555;
+      font-size: 16px;
+      line-height: 1.6;
+  }
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
