@@ -1,5 +1,5 @@
 <?php
-
+require_once "databaseConnection.php";
 
 class User {
 
@@ -49,6 +49,38 @@ class User {
     function getPassword() {
         return $this->password;
     }
+
+    public function __construct() {
+        $this->db = new Database();
+    }
+
+    // Register
+
+    public function register($username, $email, $password, $confirm_password) {
+        if ($password !== $confirm_password) {
+            return "Passwords do not match!";
+        }
+
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $stmt = $this->db->conn->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
+        $stmt->bind_param("ss", $username, $email);
+        $stmt->execute();
+        $stmt->store_result();
+        if ($stmt->num_rows > 0) {
+            return "Username or email already exists!";
+        }
+        $stmt->close();
+
+        $stmt = $this->db->conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $username, $email, $hashedPassword); // string string string - sss
+
+        if ($stmt->execute()) {
+            return "Registration successful!";
+        } else {
+            return "Error: " . $stmt->error;
+        }
 }
 
+}
 ?>

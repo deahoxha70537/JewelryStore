@@ -1,26 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-        <input type="text" name="name" placeholder="name..."> <br><br>
-        
-        <input type="text" name="surname" placeholder="surname..."> <br><br>
-        
-        <input type="text" name="email" placeholder="email..."> <br><br>
-        
-        <input type="text" name="username" placeholder="username..."><br><br>
-        
-        <input type="text" name="password" placeholder="password..."><br><br>
+<?php
+require_once "user.php";
 
-        <input type="submit" name="registerBtn" value="register"><br><br>
-    </form>
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
+    $username = trim($_POST["username"]);
+    $email = trim($_POST["email"]);
+    $password = $_POST["password"];
+    $confirm_password = $_POST["confirm_password"];
 
-   <?php include_once '../Controller/registerController.php';?>
-</body>
-</html>
+    $user = new User();
+    $message = $user->register($username, $email, $password, $confirm_password);
+
+    echo "<script>alert('$message'); window.location.href='registerform.html';</script>";
+}
+?>
