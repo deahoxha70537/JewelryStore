@@ -1,34 +1,41 @@
 <?php
 // NewsController.php
 
-class NewsController {
+class NewsController
+{
     private $db;
-    private $conn;
 
-    public function __construct() {
-        // Krijo një instancë të klasës Database
+    public function __construct()
+    {
         $this->db = new Database();
-        $this->conn = $this->db->getConnection();
     }
 
-    // Metoda për të marrë lajmet nga databaza
-    public function getNews() {
+    // Funksioni për të marrë lajmet
+    public function getNews()
+    {
         $sql = "SELECT * FROM news ORDER BY created_at DESC";
-        $result = $this->conn->query($sql);
-
-        $news = [];
-        while ($row = $result->fetch_assoc()) {
-            $news[] = $row;
-        }
-        return $news;
+        return $this->db->fetchAll($sql);
     }
 
-    // Metoda për të shtuar një lajm
-    public function addNews($title, $content, $image) {
+    // Funksioni për të shtuar një lajm të ri
+    public function addNews($title, $content, $image)
+    {
         $sql = "INSERT INTO news (title, content, image) VALUES (?, ?, ?)";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("sss", $title, $content, $image);
-        $stmt->execute();
+        $this->db->query($sql, [$title, $content, $image]);
+    }
+
+    // Funksioni për të marrë një lajm për editim
+    public function getNewsById($id)
+    {
+        $sql = "SELECT * FROM news WHERE id = ?";
+        return $this->db->fetch($sql, [$id]);
+    }
+
+    // Funksioni për të edituar lajmin
+    public function updateNews($id, $title, $content, $image)
+    {
+        $sql = "UPDATE news SET title = ?, content = ?, image = ? WHERE id = ?";
+        $this->db->query($sql, [$title, $content, $image, $id]);
     }
 }
 ?>

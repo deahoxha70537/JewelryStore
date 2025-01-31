@@ -30,22 +30,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $newsController->addNews($title, $content, $image);
     }
 
-    if (isset($_POST['product_submit'])) {
-        // Merr të dhënat për produktin
-        $name = $_POST['name'];
-        $description = $_POST['description'];
-        $price = $_POST['price'];
+    // Trajto formularin për përditësimin e lajmit
+    if (isset($_POST['update_news'])) {
+        // Merr të dhënat e përditësuara për lajmin
+        $id = $_POST['id'];
+        $title = $_POST['title'];
+        $content = $_POST['content'];
 
-        // Menaxho imazhin për produktin
+        // Menaxho imazhin për lajmin
         $image = null;
-        if ($_FILES['product_image']['name']) {
-            $image = 'uploads/' . basename($_FILES['product_image']['name']);
-            move_uploaded_file($_FILES['product_image']['tmp_name'], $image);
+        if ($_FILES['image']['name']) {
+            $image = 'uploads/' . basename($_FILES['image']['name']);
+            move_uploaded_file($_FILES['image']['tmp_name'], $image);
         }
 
-        // Shto produktin në databazë
-        $productController->addProduct($name, $description, $price, $image);
+        // Përditëso lajmin në databazë
+        $newsController->updateNews($id, $title, $content, $image);
     }
+}
+
+// Kontrollo nëse është kërkuar të editohet një lajm
+if (isset($_GET['edit'])) {
+    $newsId = $_GET['edit'];
+    $newsToEdit = $newsController->getNewsById($newsId);
 }
 
 // Merr lajmet dhe produktet nga databaza
@@ -81,19 +88,22 @@ $products = $productController->getProducts();
     <div class="container">
         <h1>Welcome to Gleam</h1>
 
-        <!-- News Form (to add news) -->
-        <h2>Add News</h2>
+        <!-- News Form (to add or edit news) -->
+        <h2><?php echo isset($newsToEdit) ? 'Edit News' : 'Add News'; ?></h2>
         <form action="index.php" method="POST" enctype="multipart/form-data">
+            <?php if (isset($newsToEdit)): ?>
+                <input type="hidden" name="id" value="<?php echo $newsToEdit['id']; ?>">
+            <?php endif; ?>
             <label for="title">Title:</label>
-            <input type="text" id="title" name="title" required><br><br>
+            <input type="text" id="title" name="title" value="<?php echo isset($newsToEdit) ? htmlspecialchars($newsToEdit['title']) : ''; ?>" required><br><br>
 
             <label for="content">Content:</label><br>
-            <textarea id="content" name="content" rows="4" cols="50" required></textarea><br><br>
+            <textarea id="content" name="content" rows="4" cols="50" required><?php echo isset($newsToEdit) ? htmlspecialchars($newsToEdit['content']) : ''; ?></textarea><br><br>
 
             <label for="image">Image:</label>
             <input type="file" id="image" name="image" accept="image/*"><br><br>
 
-            <button type="submit" name="news_submit">Add News</button>
+            <button type="submit" name="<?php echo isset($newsToEdit) ? 'update_news' : 'news_submit'; ?>"><?php echo isset($newsToEdit) ? 'Update News' : 'Add News'; ?></button>
         </form>
 
         <!-- Display News Articles -->
@@ -107,6 +117,7 @@ $products = $productController->getProducts();
                     echo "<img src='" . htmlspecialchars($newsItem['image']) . "' alt='News Image'>";
                 }
                 echo "<p>" . nl2br(htmlspecialchars($newsItem['content'])) . "</p>";
+                echo "<a href='index.php?edit=" . $newsItem['id'] . "'>Edit</a>";
                 echo "</div>";
             }
         } else {
