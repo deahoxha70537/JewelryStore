@@ -1,5 +1,4 @@
 <?php
-// DashboardController.php
 require_once 'ContactController.php';
 
 class DashboardController
@@ -20,7 +19,7 @@ class DashboardController
     {
         $contacts = $this->getContacts();
 
-        // Sigurohemi që `$contacts` nuk është null
+
         if (!is_array($contacts)) {
             $contacts = [];
         }
@@ -29,7 +28,6 @@ class DashboardController
     }
 }
 
-// Inicimi i DashboardController
 $dashboard = new DashboardController();
 $dashboard->showDashboard();
 ?>
